@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+skinparam linetype ortho
+
+' Package Structures
+
+package SourcePackage {
+    class Main
+    note right: AC = 1, EC = 1, I = 0
+}
+
+package UserPackage {
+    class User
+    note left: AC = 1, EC = 3, I = 0.75
+}
+
+
+package SubscriptionPackage {
+    class SubscriptionSystem
+    note right: AC = 1, EC = 2, I = 0.6...
+}
+
+package WebsitePackage {
+    class Website
+    note left: AC = 2, EC = 0, I = 0
+    class WebsiteContent
+}
+
+package NotificationPackage {
+    class Notification
+    note right: AC = 2, EC = 0, I = 0
+    enum Channel
+}
+
+
+' Class Dependencies
+
+Main <-down-> User
+
+User -right-> SubscriptionSystem
+User --> Website
+User --> Channel
+
+SubscriptionSystem --> Website
+SubscriptionSystem --> Notification
+
+Website -right-> WebsiteContent
+
+Notification -right-> Channel
+
+@enduml

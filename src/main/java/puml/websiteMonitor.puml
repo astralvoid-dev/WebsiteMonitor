@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam linetype ortho
+
+' This program was developed with the assistance of GitHub Copilot.
+
+class User {
+    - id : Integer
+    - username : String
+
+    + subscribe(url : String, frequency : Integer, channel : Channel) : void
+    + unsubscribe(url : String) : void
+}
+
+class SubscriptionSystem {
+    + registerWebsite(website : Website) : void
+    + removeWebsite(website : Website) : void
+    + notifySubscribers(website : Website, notification : Notification) : void
+    + checkForUpdates(website : Website) : void
+}
+
+class Website {
+    - url : String
+    - content : String
+    - lastUpdated : Date
+    - notifications : List<Notification>
+
+    + addNotification(notification : Notification) : void
+    + updateContent(content : String) : void
+}
+
+class Notification {
+    - frequency : Integer
+    - channel : Channel
+    - message : String
+
+    + sendNotification() : void
+}
+
+enum Channel {
+    WEB
+    MOBILE
+    EMAIL
+}
+
+User "1" -down-* "1" SubscriptionSystem : uses
+SubscriptionSystem "1" o-down- "0..*" Website : contains
+Website "1" o-down- "0..*" Notification : contains
+Notification "1" *-right- "1" Channel : contains
+
+
+@enduml

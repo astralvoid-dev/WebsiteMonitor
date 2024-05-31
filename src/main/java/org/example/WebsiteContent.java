@@ -36,7 +36,7 @@ public class WebsiteContent {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        final byte[] hashbytes = digest.digest(websiteText.getBytes());
+        final byte[] hashbytes = digest.digest(htmlText.getBytes());
         final StringBuilder hash = new StringBuilder();
         for (byte b : hashbytes) {
             hash.append(String.format("%02x", b));

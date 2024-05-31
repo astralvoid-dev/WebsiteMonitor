@@ -27,7 +27,7 @@ public class SubscriptionSystem {
     }
     public void notifySubscribers(Website website, Notification notification) {
         notification.sendNotification();
-        System.out.println(website.getURL() + " has been updated! ");
+        System.out.println(" " + website.getURL() + " has been updated! ");
     }
     public void checkForUpdates() {
         while(true) {

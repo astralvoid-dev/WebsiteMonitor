@@ -10,7 +10,7 @@ public class Main {
         User user = new User();
 
         // Subscribe to websites
-        // TODO: Implement GUI for user input
+        // TODO: Implement mock GUI for user input
         user.subscribe("https://gist.githubusercontent.com/astralvoid-dev/e5a383a13138a836194ab53307266cdd/raw", 5, Channel.WEB);
         user.subscribe("https://teaching.dahahm.de", 10, Channel.EMAIL);
 

@@ -1,8 +1,8 @@
 package org.example;
 
 /*
- * Author: Klejdi Galushi
- * This program was developed with the assistance of GitHub Copilot.
+ *  Author: Klejdi Galushi
+ *  This program was developed with the assistance of GitHub Copilot.
  *
  *  Pulling data from a webpage:
  *  https://stackoverflow.com/questions/6159118/using-java-to-pull-data-from-a-webpage
@@ -10,15 +10,13 @@ package org.example;
 
 import java.io.IOException;
 import java.net.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Website {
     private URL url;
     private WebsiteContent previousContent;
     private WebsiteContent content;
     private Notification notification;
+    private IStrategy strategy;
 
     public Website(String link) {
         setURL(link);
@@ -35,11 +33,10 @@ public class Website {
         this.content = content;
     }
 
+    // TODO: Implement chosen strategy here
     public Boolean isUpdated() {
-        if(content == null) {
-            return false;
-        }
-        return !content.getWebsiteText().equals(previousContent.getWebsiteText());
+        strategy.compare(content, previousContent);
+        return false;
     }
 
     public URL getURL() {
@@ -64,5 +61,9 @@ public class Website {
 
     public void setNotification(Notification notification) {
         this.notification = notification;
+    }
+
+    public void setStrategy(IStrategy strategy) {
+        this.strategy = strategy;
     }
 }

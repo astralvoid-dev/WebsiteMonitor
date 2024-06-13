@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+enum Channel
+
+class CompareContentSize
+class CompareHTMLContent
+class CompareWebsiteText
+
+interface IStrategy
+
+class Main
+class Notification
+class SubscriptionSystem
+class User
+class Website
+class WebsiteContent
+
+Website "1..*" o-- "1" IStrategy : uses
+Website "1" -- "1" WebsiteContent : contains
+Website "1" -- "1" Notification : contains
+Notification "1..*" *-- "1" Channel : contains
+
+
+IStrategy <.. CompareContentSize
+IStrategy <.. CompareHTMLContent
+IStrategy <.. CompareWebsiteText
+
+Main "1" -- "1" User : contains
+User "1" -- "1" SubscriptionSystem : has
+
+SubscriptionSystem o-- "1..*" Website : contains
+
+
+@enduml
